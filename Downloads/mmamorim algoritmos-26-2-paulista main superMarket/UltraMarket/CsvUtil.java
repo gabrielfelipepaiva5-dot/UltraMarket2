@@ -11,8 +11,14 @@ public class CsvUtil {
     public static void salvar(Object[] objetos, String nomeArquivo) {
         new File(nomeArquivo).getParentFile().mkdirs();
 
-        if (objetos == null || objetos.length == 0)
+        if (objetos == null || objetos.length == 0) {
+            try (FileWriter vazio = new FileWriter(nomeArquivo)) {
+                // lista vazia: deixa o arquivo vazio
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             return;
+        }
 
         try (FileWriter writer = new FileWriter(nomeArquivo)) {
 
@@ -61,7 +67,7 @@ public class CsvUtil {
             String linha;
             while ((linha = reader.readLine()) != null) {
 
-                String[] valores = linha.split(";");
+                String[] valores = linha.split(";", -1);
                 T obj = entity.getDeclaredConstructor().newInstance();
 
                 for (int i = 0; i < nomesCampos.length; i++) {

@@ -1,7 +1,5 @@
 package UltraMarket;
 
-import java.util.Scanner;
-
 public class AddCupom {
     ListaCupons lista;
 
@@ -20,8 +18,7 @@ public class AddCupom {
         System.out.println("2) CADASTRAR");
         System.out.println("3) REMOVER");
         System.out.println("____________________");
-        Scanner sc = new Scanner(System.in);
-        int op = sc.nextInt();
+        int op = Screen.lerOpcao();
         if(op == 0) {
             return;
         }

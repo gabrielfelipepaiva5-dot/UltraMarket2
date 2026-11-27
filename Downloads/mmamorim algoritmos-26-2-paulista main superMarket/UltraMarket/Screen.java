@@ -1,6 +1,7 @@
 package UltraMarket;
 
 import java.io.IOException;
+import java.util.Scanner;
 
 public class Screen {
 
@@ -26,6 +27,16 @@ public class Screen {
         }
     }
 
+    // le a opcao do menu; devolve -1 se nao for um numero
+    public static int lerOpcao() {
+        Scanner sc = new Scanner(System.in);
+        String linha = sc.nextLine().trim();
+        if (linha.matches("[0-9]{1,3}")) {
+            return Integer.parseInt(linha);
+        }
+        return -1;
+    }
+    
     public static void pressEnterToContinue() {
         System.out.print("Pressione Enter para continuar...");
         try {
